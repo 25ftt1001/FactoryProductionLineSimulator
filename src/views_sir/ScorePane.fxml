@@ -1,0 +1,12 @@
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<HBox
+    xmlns:fx="http://javafx.com/fxml"
+    styleClass="scorePane"
+    stylesheets="@Main.css"
+    fx:controller="controllers.ScorePaneController"
+>
+    <Label fx:id="scoreTitleLabel" text="Score" />
+    <Label fx:id="scoreLabel" text="0" />
+</HBox>

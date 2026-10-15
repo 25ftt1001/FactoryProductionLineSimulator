@@ -1,0 +1,24 @@
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="controllerss.LoginController"
+    stylesheets="@App.css"
+>
+    <Label styleClass="title" text="Welcome to Todo List App" />
+    <HBox>
+        <Label text="Username" />
+        <TextField fx:id="usernameTextField" />
+    </HBox>
+    <HBox>
+        <Label text="Password" />
+        <PasswordField fx:id="passwordTextField" />
+    </HBox>
+    <CheckBox text="Show Password" fx:id="showPasswordCheckBox" onAction="#showPassword"/>
+    <HBox>
+        <Button text="Login" onAction="#login" />
+        <Button text="Register" onAction="#register" />
+    </HBox>
+    <Label styleClass="title, warning" fx:id="errorLabel" />
+</VBox>

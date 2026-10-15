@@ -1,0 +1,42 @@
+* {
+    -fx-font-size: 18;
+    -fx-padding: 5;
+}
+
+VBox {
+    -fx-fill-width: true;
+}
+
+Label {
+    -fx-pref-width: 100;
+    -fx-pref-height: 50;
+}
+
+TextField, PasswordField {
+    -fx-pref-width: 400;
+    -fx-pref-height: 50;
+}
+
+Button {
+    -fx-pref-width: 250;
+    -fx-pref-height: 50;   
+}
+
+.title {
+    -fx-pref-width: Infinity;
+    -fx-alignment: center;
+    -fx-font: normal bolder 22 serif;
+}
+
+.warning {
+    -fx-text-fill: RED;
+}
+
+.todo {
+    -fx-pref-width: 400;
+    -fx-wrap-text: true;
+}
+
+.todoButton {
+    -fx-pref-width: 50;
+}

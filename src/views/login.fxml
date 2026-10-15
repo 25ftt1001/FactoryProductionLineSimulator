@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+
+<StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController" styleClass="root-pane">
+
+    <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="650.0" prefWidth="850.0" styleClass="window-container">
+
+        <VBox alignment="CENTER" spacing="18.0" VBox.vgrow="ALWAYS">
+            
+            <StackPane styleClass="logo-container">
+                <Label text="F" styleClass="logo-text" />
+            </StackPane>
+
+            <Label text="FACTORY" styleClass="heading-text" />
+            <Label text="PRODUCTION CONTROL SYSTEM" styleClass="subheading-text" />
+
+            <Region minHeight="50.0" />
+
+            <Button text="LOGIN TO SYSTEM" onAction="#handleLogin" styleClass="primary-button" prefWidth="520.0" prefHeight="48.0" />
+            <Button text="CREATE ACCOUNT" onAction="#handleCreateAccount" styleClass="secondary-button" prefWidth="520.0" prefHeight="48.0" />
+
+            <Region VBox.vgrow="ALWAYS" />
+
+            <Label text="v2.4.1 - BUILD 2026" styleClass="version-text" />
+            <padding><Insets bottom="25.0"/></padding>
+        </VBox>
+    </VBox>
+</StackPane>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+
+<StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginPageController" styleClass="root-pane">
+
+    <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="650.0" prefWidth="850.0" styleClass="window-container light-bg">
+
+        <VBox alignment="CENTER_LEFT" spacing="10.0" styleClass="form-container">
+            
+            <Label text="Welcome Back" styleClass="welcome-heading" />
+            <Label text="Sign in to your production account" styleClass="welcome-subheading" />
+
+            <Region minHeight="15.0" />
+
+            <Label text="EMAIL ADDRESS" styleClass="input-label" />
+            <TextField fx:id="emailField" promptText="Noriqdah@factory.io" styleClass="input-field" />
+
+            <Label text="PASSWORD" styleClass="input-label" />
+            <PasswordField fx:id="passwordField" promptText="••••••••" styleClass="input-field" />
+
+            <HBox alignment="CENTER_RIGHT" maxWidth="Infinity">
+                <Hyperlink text="Forgot password?" styleClass="link-text" />
+            </HBox>
+
+            <Region minHeight="15.0" />
+
+            <Button text="LOGIN → ACCESS SYSTEM" onAction="#handleAccessSystem" styleClass="primary-button" maxWidth="Infinity" prefHeight="48.0" />
+
+            <HBox alignment="CENTER" maxWidth="Infinity" spacing="5.0">
+                <padding><Insets top="10.0"/></padding>
+                <Label text="No account?" styleClass="footer-text" />
+                <Hyperlink text="Register here" styleClass="link-text" onAction="#handleRegister" />
+            </HBox>
+
+        </VBox>
+    </VBox>
+</StackPane>

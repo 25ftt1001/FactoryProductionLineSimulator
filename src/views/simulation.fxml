@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.SimulationController"
+            style="-fx-background-color: #0f1216;">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" style="-fx-padding: 15 20 15 20; -fx-background-color: #14181d; -fx-border-color: transparent transparent #1f262e transparent; -fx-border-width: 0 0 1 0;">
+            <Label fx:id="headerTitle" text="Simulation" style="-fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <HBox alignment="CENTER" spacing="6">
+                <Circle fx:id="stateDot" radius="4" fill="#8896a6"/>
+                <Label fx:id="stateIndicator" text="IDLE" style="-fx-text-fill: #8896a6; -fx-font-size: 10px; -fx-font-weight: bold;"/>
+            </HBox>
+        </HBox>
+    </top>
+
+    <center>
+        <StackPane>
+
+            <!-- 3.1 IDLE -->
+            <VBox fx:id="idleView" spacing="15" style="-fx-padding: 20;">
+                <Label text="SELECT PRODUCTION LINE" style="-fx-text-fill: #8896a6; -fx-font-size: 10px; -fx-font-weight: bold;"/>
+                <ComboBox fx:id="lineSelector" maxWidth="Infinity"/>
+
+                <VBox spacing="10" style="-fx-background-color: #14181d; -fx-background-radius: 10; -fx-padding: 20;">
+                    <Label text="STATUS" style="-fx-text-fill: #6c7884; -fx-font-size: 10px; -fx-font-weight: bold;" alignment="CENTER" maxWidth="Infinity"/>
+                    <Label fx:id="statusLabel" text="IDLE — READY TO START" style="-fx-text-fill: #e2e8f0; -fx-font-size: 12px;" alignment="CENTER" maxWidth="Infinity"/>
+                    <Label fx:id="progressPercent" text="0%" style="-fx-text-fill: white; -fx-font-size: 48px; -fx-font-weight: bold;" alignment="CENTER" maxWidth="Infinity"/>
+                    <Label fx:id="progressSubLabel" text="0 / 240 UNITS PRODUCED" style="-fx-text-fill: #6c7884; -fx-font-size: 10px;" alignment="CENTER" maxWidth="Infinity"/>
+                </VBox>
+
+                <HBox spacing="10">
+                    <VBox spacing="5" style="-fx-background-color: #14181d; -fx-background-radius: 8; -fx-padding: 12;" HBox.hgrow="ALWAYS">
+                        <Label text="TARGET" style="-fx-text-fill: #6c7884; -fx-font-size: 9px; -fx-font-weight: bold;"/>
+                        <Label fx:id="targetLabel" text="240" style="-fx-text-fill: #ffbd2e; -fx-font-size: 18px; -fx-font-weight: bold;"/>
+                    </VBox>
+                    <VBox spacing="5" style="-fx-background-color: #14181d; -fx-background-radius: 8; -fx-padding: 12;" HBox.hgrow="ALWAYS">
+                        <Label text="SPEED" style="-fx-text-fill: #6c7884; -fx-font-size: 9px; -fx-font-weight: bold;"/>
+                        <Label fx:id="speedLabel" text="76%" style="-fx-text-fill: #ffbd2e; -fx-font-size: 18px; -fx-font-weight: bold;"/>
+                    </VBox>
+                    <VBox spacing="5" style="-fx-background-color: #14181d; -fx-background-radius: 8; -fx-padding: 12;" HBox.hgrow="ALWAYS">
+                        <Label text="PRODUCT" style="-fx-text-fill: #6c7884; -fx-font-size: 9px; -fx-font-weight: bold;"/>
+                        <Label fx:id="productLabel" text="Engine" style="-fx-text-fill: #ffbd2e; -fx-font-size: 18px; -fx-font-weight: bold;"/>
+                    </VBox>
+                </HBox>
+
+                <Region VBox.vgrow="ALWAYS"/>
+
+                <Button text="▶ START PRODUCTION" onAction="#handleStart"
+                        maxWidth="Infinity" prefHeight="45"
+                        style="-fx-background-color: #ffbd2e; -fx-text-fill: #0f1216; -fx-font-weight: bold; -fx-font-size: 13px; -fx-background-radius: 8; -fx-cursor: hand;"/>
+            </VBox>
+
+            <!-- 3.2 RUNNING -->
+            <VBox fx:id="runningView" spacing="12" style="-fx-padding: 20;" visible="false" managed="false">
+                <HBox alignment="CENTER_LEFT" spacing="8" style="-fx-background-color: rgba(39, 201, 63, 0.08); -fx-background-radius: 6; -fx-padding: 8 12 8 12;">
+                    <Label text="●" style="-fx-text-fill: #27c93f; -fx-font-size: 12px;"/>
+                    <Label text="RUNNING — LINE 01" style="-fx-text-fill: #27c93f; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                </HBox>
+
+                <VBox spacing="8" style="-fx-background-color: #14181d; -fx-background-radius: 10; -fx-padding: 20;">
+                    <Label fx:id="runningProgressPercent" text="0%" style="-fx-text-fill: #ffbd2e; -fx-font-size: 52px; -fx-font-weight: bold;" alignment="CENTER" maxWidth="Infinity"/>
+                    <Label fx:id="runningProgressSub" text="0 / 240 UNITS PRODUCED" style="-fx-text-fill: #6c7884; -fx-font-size: 10px;" alignment="CENTER" maxWidth="Infinity"/>
+                    <ProgressBar fx:id="runningProgressBar" progress="0" maxWidth="Infinity" prefHeight="8"
+                                 style="-fx-accent: #ffbd2e;"/>
+                </VBox>
+
+                <HBox spacing="10">
+                    <VBox spacing="5" style="-fx-background-color: #14181d; -fx-background-radius: 8; -fx-padding: 12;" HBox.hgrow="ALWAYS">
+                        <Label text="ELAPSED" style="-fx-text-fill: #6c7884; -fx-font-size: 9px; -fx-font-weight: bold;"/>
+                        <Label fx:id="elapsedLabel" text="00:00" style="-fx-text-fill: #ffbd2e; -fx-font-size: 18px; -fx-font-weight: bold;"/>
+                    </VBox>
+                    <VBox spacing="5" style="-fx-background-color: #14181d; -fx-background-radius: 8; -fx-padding: 12;" HBox.hgrow="ALWAYS">
+                        <Label text="PRODUCED" style="-fx-text-fill: #6c7884; -fx-font-size: 9px; -fx-font-weight: bold;"/>
+                        <Label fx:id="producedLabel" text="0" style="-fx-text-fill: #ffbd2e; -fx-font-size: 18px; -fx-font-weight: bold;"/>
+                    </VBox>
+                    <VBox spacing="5" style="-fx-background-color: #14181d; -fx-background-radius: 8; -fx-padding: 12;" HBox.hgrow="ALWAYS">
+                        <Label text="DEFECTIVE" style="-fx-text-fill: #6c7884; -fx-font-size: 9px; -fx-font-weight: bold;"/>
+                        <Label fx:id="defectiveLabel" text="0" style="-fx-text-fill: #ff5f56; -fx-font-size: 18px; -fx-font-weight: bold;"/>
+                    </VBox>
+                </HBox>
+
+                <VBox spacing="8" style="-fx-background-color: #14181d; -fx-background-radius: 10; -fx-padding: 15;">
+                    <Label fx:id="runningCurrentStageLabel" text="CURRENT STAGE — RAW MATERIAL FEED" style="-fx-text-fill: #8896a6; -fx-font-size: 9px; -fx-font-weight: bold;"/>
+                    <HBox fx:id="runningStageBar" spacing="4"/>
+                </VBox>
+
+                <Region VBox.vgrow="ALWAYS"/>
+
+                <HBox spacing="10">
+                    <Button text="⏸ PAUSE" onAction="#handlePause"
+                            prefHeight="45" HBox.hgrow="ALWAYS" maxWidth="Infinity"
+                            style="-fx-background-color: #1f262e; -fx-text-fill: #e2e8f0; -fx-font-weight: bold; -fx-font-size: 13px; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                    <Button text="⏹ STOP" onAction="#handleStop"
+                            prefHeight="45" HBox.hgrow="ALWAYS" maxWidth="Infinity"
+                            style="-fx-background-color: rgba(255, 95, 86, 0.15); -fx-text-fill: #ff5f56; -fx-font-weight: bold; -fx-font-size: 13px; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                </HBox>
+            </VBox>
+
+            <!-- 3.3 PAUSED -->
+            <VBox fx:id="pausedView" spacing="12" style="-fx-padding: 20;" visible="false" managed="false">
+                <HBox alignment="CENTER_LEFT" spacing="8" style="-fx-background-color: rgba(255, 189, 46, 0.08); -fx-background-radius: 6; -fx-padding: 8 12 8 12;">
+                    <Label text="●" style="-fx-text-fill: #ffbd2e; -fx-font-size: 12px;"/>
+                    <Label text="PAUSED" style="-fx-text-fill: #ffbd2e; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                </HBox>
+
+                <VBox spacing="8" style="-fx-background-color: #14181d; -fx-background-radius: 10; -fx-padding: 20;">
+                    <Label fx:id="pausedProgressPercent" text="0%" style="-fx-text-fill: #ffbd2e; -fx-font-size: 52px; -fx-font-weight: bold;" alignment="CENTER" maxWidth="Infinity"/>
+                    <Label fx:id="pausedProgressSub" text="Production temporarily halted" style="-fx-text-fill: #6c7884; -fx-font-size: 10px;" alignment="CENTER" maxWidth="Infinity"/>
+                    <ProgressBar fx:id="pausedProgressBar" progress="0" maxWidth="Infinity" prefHeight="8"
+                                 style="-fx-accent: #ffbd2e;"/>
+                </VBox>
+
+                <VBox spacing="6" style="-fx-background-color: rgba(255, 189, 46, 0.05); -fx-border-color: rgba(255, 189, 46, 0.2); -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 12;">
+                    <Label fx:id="pausedTimeLabel" text="Production paused at 00:00" style="-fx-text-fill: #ffbd2e; -fx-font-size: 11px;"/>
+                    <Label fx:id="pausedMessageLabel" text="Resume to continue from current progress" style="-fx-text-fill: #6c7884; -fx-font-size: 10px;"/>
+                </VBox>
+
+                <Region VBox.vgrow="ALWAYS"/>
+
+                <Button text="▶ RESUME PRODUCTION" onAction="#handleResume"
+                        maxWidth="Infinity" prefHeight="45"
+                        style="-fx-background-color: #ffbd2e; -fx-text-fill: #0f1216; -fx-font-weight: bold; -fx-font-size: 13px; -fx-background-radius: 8; -fx-cursor: hand;"/>
+
+                <Button text="VIEW PROGRESS DETAILS" onAction="#handleViewDetails"
+                        maxWidth="Infinity" prefHeight="40"
+                        style="-fx-background-color: transparent; -fx-text-fill: #8896a6; -fx-font-weight: bold; -fx-font-size: 11px; -fx-border-color: #1f262e; -fx-border-radius: 8; -fx-background-radius: 8; -fx-cursor: hand;"/>
+            </VBox>
+
+            <!-- 3.4 PROGRESS -->
+            <VBox fx:id="progressView" spacing="12" style="-fx-padding: 20;" visible="false" managed="false">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <Button text="← Back" onAction="#handleBack"
+                            prefWidth="90" prefHeight="32"
+                            style="-fx-background-color: #1f262e; -fx-text-fill: #e2e8f0; -fx-font-size: 12px; -fx-font-weight: bold; -fx-background-radius: 6; -fx-border-color: #334155; -fx-border-radius: 6; -fx-cursor: hand;"/>
+                    <Label text="Production Progress" style="-fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;"/>
+                </HBox>
+
+                <HBox spacing="10">
+                    <VBox spacing="5" style="-fx-background-color: #14181d; -fx-background-radius: 8; -fx-padding: 12;" HBox.hgrow="ALWAYS">
+                        <Label text="UNITS DONE" style="-fx-text-fill: #6c7884; -fx-font-size: 9px; -fx-font-weight: bold;"/>
+                        <Label fx:id="progressUnitsLabel" text="0" style="-fx-text-fill: #27c93f; -fx-font-size: 18px; -fx-font-weight: bold;"/>
+                    </VBox>
+                    <VBox spacing="5" style="-fx-background-color: #14181d; -fx-background-radius: 8; -fx-padding: 12;" HBox.hgrow="ALWAYS">
+                        <Label text="TARGET" style="-fx-text-fill: #6c7884; -fx-font-size: 9px; -fx-font-weight: bold;"/>
+                        <Label fx:id="progressTargetLabel" text="240" style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;"/>
+                    </VBox>
+                    <VBox spacing="5" style="-fx-background-color: #14181d; -fx-background-radius: 8; -fx-padding: 12;" HBox.hgrow="ALWAYS">
+                        <Label text="DEFECT" style="-fx-text-fill: #6c7884; -fx-font-size: 9px; -fx-font-weight: bold;"/>
+                        <Label fx:id="progressDefectLabel" text="0" style="-fx-text-fill: #ff5f56; -fx-font-size: 18px; -fx-font-weight: bold;"/>
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="12" VBox.vgrow="ALWAYS">
+                    <VBox spacing="8" style="-fx-background-color: #14181d; -fx-background-radius: 10; -fx-padding: 15;" HBox.hgrow="ALWAYS">
+                        <Label text="PRODUCTION STAGES" style="-fx-text-fill: #8896a6; -fx-font-size: 9px; -fx-font-weight: bold;"/>
+                        <VBox fx:id="progressStagesBox" spacing="4"/>
+                    </VBox>
+
+                    <VBox fx:id="currentStageBox" spacing="6" style="-fx-background-color: #14181d; -fx-background-radius: 10; -fx-padding: 15;" HBox.hgrow="ALWAYS"/>
+                </HBox>
+
+                <Button text="VIEW PROGRESS DETAILS" onAction="#handleViewDetails"
+                        maxWidth="Infinity" prefHeight="40"
+                        style="-fx-background-color: transparent; -fx-text-fill: #8896a6; -fx-font-weight: bold; -fx-font-size: 11px; -fx-border-color: #1f262e; -fx-border-radius: 8; -fx-background-radius: 8; -fx-cursor: hand;"/>
+            </VBox>
+
+        </StackPane>
+    </center>
+
+    <!-- ✅ BOTTOM NAV — with pickOnBounds + mouseTransparent -->
+   <bottom>
+    <HBox alignment="CENTER" style="-fx-background-color: #14181d; -fx-border-color: #1f262e transparent transparent transparent; -fx-border-width: 1 0 0 0; -fx-padding: 15 10 20 10;">
+
+        <Button text="⌂&#10;HOME" onAction="#handleNavigateHome"
+                HBox.hgrow="ALWAYS" maxWidth="Infinity" prefHeight="55"
+                style="-fx-background-color: transparent; -fx-text-fill: #6c7884; -fx-font-size: 11px; -fx-font-weight: bold; -fx-cursor: hand;"/>
+
+        <Button text="☰&#10;LINES" onAction="#handleNavigateLines"
+                HBox.hgrow="ALWAYS" maxWidth="Infinity" prefHeight="55"
+                style="-fx-background-color: transparent; -fx-text-fill: #6c7884; -fx-font-size: 11px; -fx-font-weight: bold; -fx-cursor: hand;"/>
+
+        <Button text="▶&#10;SIMULATE" onAction="#handleNavigateSimulate"
+                HBox.hgrow="ALWAYS" maxWidth="Infinity" prefHeight="55"
+                style="-fx-background-color: transparent; -fx-text-fill: #ffbd2e; -fx-font-size: 11px; -fx-font-weight: bold; -fx-cursor: hand;"/>
+
+        <Button text="▤&#10;REPORTS" onAction="#handleNavigateReports"
+                HBox.hgrow="ALWAYS" maxWidth="Infinity" prefHeight="55"
+                style="-fx-background-color: transparent; -fx-text-fill: #6c7884; -fx-font-size: 11px; -fx-font-weight: bold; -fx-cursor: hand;"/>
+
+        <Button text="○&#10;PROFILE" onAction="#handleNavigateProfile"
+                HBox.hgrow="ALWAYS" maxWidth="Infinity" prefHeight="55"
+                style="-fx-background-color: transparent; -fx-text-fill: #6c7884; -fx-font-size: 11px; -fx-font-weight: bold; -fx-cursor: hand;"/>
+
+    </HBox>
+</bottom>
+</BorderPane>

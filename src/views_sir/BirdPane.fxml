@@ -1,0 +1,37 @@
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<Pane
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="controllers.BirdPaneController"
+>
+    <Polygon
+        fx:id="beak"
+        points="35.0,15.0, 50.0,20.0, 35.0,25.0"
+        fill="orange"
+
+    />
+    <Circle
+        fx:id="body"
+        centerX="20.0"
+        centerY="20.0"
+        radius="20.0"
+        fill="pink"
+        
+    />
+
+    <Circle
+        fx:id="eye"
+        centerX="30.0"
+        centerY="15.0"
+        radius="5.0"
+        fill="black" stroke="white" strokeWidth="3.0"
+        
+    />
+    <Polygon
+        fx:id="wing"
+        points="10.0,20.0, 25.0,25.0, 15.0,35.0"
+        fill="black"
+
+    />
+</Pane>

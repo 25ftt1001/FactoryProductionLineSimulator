@@ -1,0 +1,44 @@
+#rootPane {
+    -fx-alignment: top-center;
+    -fx-background-color: black;
+}
+
+#titleLabel {
+    -fx-font-size: 32px;
+    -fx-text-fill: white;
+}
+
+.scorePane {
+    -fx-alignment: center;
+    -fx-spacing: 10px;
+}
+
+#scoreTitleLabel {
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+}
+
+#scoreLabel {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Serif";
+    -fx-text-fill: white;
+}
+
+#currentScorePane {
+    -fx-background-color: darkblue;
+}
+
+#previousScorePane {
+    -fx-background-color: darkcyan;
+}
+
+#spacePressedScorePane {
+    -fx-background-color: rgb(87, 11, 11);
+}
+
+#flightPane {
+    -fx-background-color: lightgreen;
+    -fx-pref-width: 600px;
+    -fx-pref-height: 600px;
+}

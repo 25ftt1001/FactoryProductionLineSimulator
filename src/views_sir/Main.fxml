@@ -1,0 +1,18 @@
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox
+    xmlns:fx="http://javafx.com/fxml"
+    fx:id="rootPane"
+    fx:controller="controllers.MainController"
+    stylesheets="@Main.css"
+    onKeyPressed="#handleKeyPressed"
+    onKeyReleased="#handleKeyReleased"
+    focusTraversable="true"
+>
+    <Label fx:id="titleLabel" text="Baby Bird"/>
+    <fx:include fx:id="currentScorePane" source="ScorePane.fxml" />
+    <fx:include fx:id="previousScorePane" source="ScorePane.fxml" />
+    <fx:include fx:id="flightPane" source="FlightPane.fxml" />
+    <fx:include fx:id="spacePressedScorePane" source="ScorePane.fxml" />
+</VBox>

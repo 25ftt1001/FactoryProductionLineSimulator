@@ -1,0 +1,196 @@
+/* --- Global Variables & Root --- */
+.root-pane {
+    -fx-background-color: #0f172a;
+    -fx-font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+}
+
+.window-container {
+    -fx-background-color: #1e293b;
+    -fx-background-radius: 16px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 30, 0, 0, 15);
+}
+
+.window-container.light-bg {
+    -fx-background-color: #d1d5db;
+}
+
+/* --- Top Bar --- */
+.top-bar {
+    -fx-background-color: #0f172a;
+    -fx-background-radius: 16px 16px 0 0;
+    -fx-border-color: transparent transparent #334155 transparent;
+    -fx-border-width: 1px;
+}
+
+.app-title {
+    -fx-font-size: 13px;
+    -fx-font-family: "Consolas", monospace;
+    -fx-text-fill: #94a3b8;
+    -fx-font-weight: bold;
+}
+
+.top-bar-title {
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Consolas", monospace;
+}
+
+/* --- Logo Styling (First Screen) --- */
+.logo-container {
+    -fx-background-color: #eab308;
+    -fx-background-radius: 18px;
+    -fx-min-width: 85px;
+    -fx-min-height: 85px;
+    -fx-effect: dropshadow(three-pass-box, rgba(234, 179, 8, 0.4), 25, 0, 0, 0);
+}
+
+.logo-text {
+    -fx-font-size: 42px;
+    -fx-font-weight: 900;
+    -fx-text-fill: #0f172a;
+}
+
+/* --- Typography (First Screen) --- */
+.heading-text {
+    -fx-font-size: 32px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #f8fafc;
+    -fx-letter-spacing: 4px; 
+}
+
+.subheading-text {
+    -fx-font-size: 12px;
+    -fx-text-fill: #94a3b8;
+    -fx-font-family: "Consolas", monospace;
+    -fx-letter-spacing: 1.5px;
+}
+
+.version-text {
+    -fx-font-size: 11px;
+    -fx-text-fill: #475569;
+    -fx-font-family: "Consolas", monospace;
+}
+
+/* --- Buttons --- */
+.primary-button {
+    -fx-background-color: #eab308;
+    -fx-text-fill: #0f172a;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-letter-spacing: 1px;
+}
+
+.primary-button:hover {
+    -fx-background-color: #facc15;
+    -fx-effect: dropshadow(three-pass-box, rgba(234, 179, 8, 0.5), 15, 0, 0, 0);
+}
+
+.secondary-button {
+    -fx-background-color: transparent;
+    -fx-border-color: #475569;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-text-fill: #cbd5e1;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+    -fx-letter-spacing: 1px;
+}
+
+.secondary-button:hover {
+    -fx-background-color: rgba(71, 85, 105, 0.2);
+    -fx-border-color: #94a3b8;
+}
+
+/* --- Forms (Login & Register Pages) --- */
+.form-container {
+    -fx-padding: 30px 120px 30px 120px;
+    -fx-max-width: 750px;
+}
+
+.welcome-heading {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a202c;
+}
+
+.welcome-subheading {
+    -fx-font-size: 14px;
+    -fx-text-fill: #4a5568;
+}
+
+.input-label {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #718096;
+    -fx-letter-spacing: 1px;
+    -fx-padding: 8px 0 0 0;
+}
+
+.input-field {
+    -fx-background-color: #e2e8f0;
+    -fx-background-radius: 5px;
+    -fx-border-color: #cbd5e1;
+    -fx-border-radius: 5px;
+    -fx-padding: 12px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #1a202c;
+}
+
+.input-field:focused {
+    -fx-border-color: #eab308;
+    -fx-background-color: #ffffff;
+}
+
+.link-text {
+    -fx-text-fill: #d69e2e;
+    -fx-font-size: 13px;
+    -fx-border-color: transparent;
+    -fx-underline: false;
+    -fx-cursor: hand;
+}
+
+.link-text:hover {
+    -fx-underline: true;
+}
+
+.footer-text {
+    -fx-text-fill: #718096;
+    -fx-font-size: 13px;
+}
+
+/* --- Change Password Page --- */
+.back-link {
+    -fx-text-fill: #d69e2e;
+    -fx-font-size: 13px;
+    -fx-border-color: transparent;
+    -fx-underline: false;
+    -fx-cursor: hand;
+}
+
+.back-link:hover {
+    -fx-underline: true;
+}
+
+.requirements-box {
+    -fx-background-color: rgba(214, 158, 46, 0.08);
+    -fx-border-color: rgba(214, 158, 46, 0.35);
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 15px;
+}
+
+.requirements-title {
+    -fx-text-fill: #d69e2e;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-letter-spacing: 1px;
+}
+
+.requirements-item {
+    -fx-text-fill: #4a5568;
+    -fx-font-size: 12px;
+}
